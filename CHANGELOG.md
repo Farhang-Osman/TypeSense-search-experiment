@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.1.9](https://github.com/Farhang-Osman/typesense-search-app/compare/v0.1.8...v0.1.9) (2024-10-16)
+
+
+### Bug Fixes
+
+* **error:** 'use client' fixed Error: (0 , react__WEBPACK_IMPORTED_MODULE_0__.createContext) is not a function ([cfd43b6](https://github.com/Farhang-Osman/typesense-search-app/commit/cfd43b64ad6706e712feadb345704ac1df6f2817))
+
 ## [0.1.8](https://github.com/Farhang-Osman/typesense-search-app/compare/v0.1.7...v0.1.8) (2024-10-15)
 
 ## [0.1.7](https://github.com/Farhang-Osman/typesense-search-app/compare/v0.1.6...v0.1.7) (2024-10-15)
