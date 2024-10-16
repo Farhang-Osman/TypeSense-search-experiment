@@ -1,7 +1,7 @@
 'use client';
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
-import { InstantSearch, SearchBox } from 'react-instantsearch';
+import { Hits, InstantSearch, SearchBox } from 'react-instantsearch';
 import type { NextPage } from 'next';
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
@@ -23,6 +23,14 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   },
 });
 
+interface Props {
+  hit: any;
+}
+
+export const hit = ({ hit }: Props) => {
+  return <div>{hit.title}</div>;
+};
+
 const Home: NextPage = () => {
   return (
     <InstantSearch
@@ -30,6 +38,7 @@ const Home: NextPage = () => {
       searchClient={typesenseInstantsearchAdapter.searchClient}
     >
       <SearchBox />
+      <Hits hitComponent={hit} />
     </InstantSearch>
   );
 };
