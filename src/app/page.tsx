@@ -3,6 +3,7 @@
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 import { Hits, InstantSearch, SearchBox } from 'react-instantsearch';
 import type { NextPage } from 'next';
+import Image from 'next/image';
 
 const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   server: {
@@ -28,7 +29,12 @@ interface Props {
 }
 
 export const hit = ({ hit }: Props) => {
-  return <div>{hit.title}</div>;
+  return (
+    <div>
+      <Image src={hit.image_url} width={40} height={40} alt='image' />
+      {hit.title}
+    </div>
+  );
 };
 
 const Home: NextPage = () => {
