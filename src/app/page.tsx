@@ -1,10 +1,37 @@
-// import { NextPage } from 'next';
-import importBooks from './bookCollection';
+'use client';
 
-const Home = () => {
-  importBooks();
+import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
+import { InstantSearch, SearchBox } from 'react-instantsearch';
+import type { NextPage } from 'next';
 
-  return <div className='bg-green-400'>hello world</div>;
+const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
+  server: {
+    apiKey: 'dO5e1kLIFhZdzbIoJrsqmpipx0aONY8u88JKid91KfihOwqN', // Be sure to use the search-only-api-key
+    nodes: [
+      {
+        host: 'localhost',
+        port: 8108,
+        protocol: 'http',
+      },
+    ],
+  },
+  // The following parameters are directly passed to Typesense's search API endpoint.
+  //  So you can pass any parameters supported by the search endpoint below.
+  //  query_by is required.
+  additionalSearchParameters: {
+    query_by: 'title,authors',
+  },
+});
+
+const Home: NextPage = () => {
+  return (
+    <InstantSearch
+      indexName='books'
+      searchClient={typesenseInstantsearchAdapter.searchClient}
+    >
+      <SearchBox />
+    </InstantSearch>
+  );
 };
 
 export default Home;

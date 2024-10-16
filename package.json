@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/react-instantsearch": "^6.10.4",
+    "fs.promises": "^0.1.2",
     "next": "14.2.15",
     "react": "^18",
     "react-dom": "^18",

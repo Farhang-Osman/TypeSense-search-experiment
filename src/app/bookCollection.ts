@@ -56,29 +56,27 @@ export async function importBooks(): Promise<void> {
 
   await client.collections('books').delete();
 
-  client
-    .collections()
-    .create(booksSchema)
-    .then(data => {
-      console.log(data);
-    });
+  client.collections().create(booksSchema);
+  // .then(data => {
+  //   console.log(data);
+  // });
 
   const booksInJsonl = await fs.readFile('books.jsonl', 'utf-8');
   await client.collections('books').documents().import(booksInJsonl);
 
-  const searchParameters = {
-    q: 'harry potter',
-    query_by: 'title',
-    sort_by: 'ratings_count:desc',
-  };
+  // const searchParameters = {
+  //   q: 'harry potter',
+  //   query_by: 'title',
+  //   sort_by: 'ratings_count:desc',
+  // };
 
-  client
-    .collections('books')
-    .documents()
-    .search(searchParameters)
-    .then(searchResults => {
-      console.log(searchResults);
-    });
+  // client
+  //   .collections('books')
+  //   .documents()
+  //   .search(searchParameters)
+  // .then(searchResults => {
+  //   console.log(searchResults);
+  // });
 }
 
-export default importBooks;
+importBooks();
