@@ -2,10 +2,13 @@
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
 import {
+  Configure,
   Hits,
   InstantSearch,
+  Pagination,
   RefinementList,
   SearchBox,
+  SortBy,
 } from 'react-instantsearch';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -48,14 +51,29 @@ const Home: NextPage = () => {
       indexName='books'
       searchClient={typesenseInstantsearchAdapter.searchClient}
     >
+      <Configure hitsPerPage={9} />
       <div className='flex'>
         <aside className='bg-gray-500'>
           <RefinementList attribute='authors' />
         </aside>
 
         <main className='bg-gray-300'>
-          <SearchBox placeholder='search books' />
-          <Hits hitComponent={hit} />
+          <div>
+            <SearchBox placeholder='search books' />
+            <SortBy
+              items={[
+                { label: 'Featured', value: 'books' },
+                {
+                  label: 'publication_year',
+                  value: 'books/sort/publication_year:asc',
+                },
+              ]}
+            />
+            <Hits hitComponent={hit} />
+          </div>
+          <div>
+            <Pagination />
+          </div>
         </main>
       </div>
     </InstantSearch>
