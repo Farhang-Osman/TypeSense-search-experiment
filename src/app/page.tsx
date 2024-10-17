@@ -1,7 +1,12 @@
 'use client';
 
 import TypesenseInstantSearchAdapter from 'typesense-instantsearch-adapter';
-import { Hits, InstantSearch, SearchBox } from 'react-instantsearch';
+import {
+  Hits,
+  InstantSearch,
+  RefinementList,
+  SearchBox,
+} from 'react-instantsearch';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -43,8 +48,16 @@ const Home: NextPage = () => {
       indexName='books'
       searchClient={typesenseInstantsearchAdapter.searchClient}
     >
-      <SearchBox />
-      <Hits hitComponent={hit} />
+      <div>
+        <aside>
+          <RefinementList attribute='authors' />
+        </aside>
+
+        <main>
+          <SearchBox placeholder='search books' />
+          <Hits hitComponent={hit} />
+        </main>
+      </div>
     </InstantSearch>
   );
 };
