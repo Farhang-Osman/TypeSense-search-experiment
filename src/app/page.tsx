@@ -31,7 +31,7 @@ interface Props {
 export const hit = ({ hit }: Props) => {
   return (
     <div>
-      <Image src={hit.image_url} width={40} height={40} alt='image' />
+      <Image src={hit.image_url} width={100} height={100} alt='image' />
       {hit.title}
     </div>
   );
