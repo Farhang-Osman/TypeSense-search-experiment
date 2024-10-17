@@ -37,7 +37,7 @@ export const hit = ({ hit }: Props) => {
   return (
     <div>
       <Image src={hit.image_url} width={100} height={100} alt='image' />
-      {hit.title}
+      <h3 className='truncate bg-gray-400'>{hit.title}</h3>
     </div>
   );
 };
@@ -48,12 +48,12 @@ const Home: NextPage = () => {
       indexName='books'
       searchClient={typesenseInstantsearchAdapter.searchClient}
     >
-      <div>
-        <aside>
+      <div className='flex'>
+        <aside className='bg-gray-500'>
           <RefinementList attribute='authors' />
         </aside>
 
-        <main>
+        <main className='bg-gray-300'>
           <SearchBox placeholder='search books' />
           <Hits hitComponent={hit} />
         </main>
