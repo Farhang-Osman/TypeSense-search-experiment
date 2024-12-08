@@ -9,6 +9,7 @@ import {
   RefinementList,
   SearchBox,
   SortBy,
+  Index,
 } from 'react-instantsearch';
 import type { NextPage } from 'next';
 import Image from 'next/image';
@@ -28,24 +29,24 @@ const typesenseInstantsearchAdapter = new TypesenseInstantSearchAdapter({
   //  So you can pass any parameters supported by the search endpoint below.
   //  query_by is required.
   additionalSearchParameters: {
-    query_by: 'title,authors',
+    query_by: 'title',
+    include_fields: '$author(*)',
   },
 });
 
-interface Props {
-  hit: any;
-}
-
-export const hit = ({ hit }: Props) => {
+export const hit = ({ hit }: any) => {
   return (
     <div>
       <Image src={hit.image_url} width={100} height={100} alt='image' />
       <h3 className='truncate bg-gray-400'>{hit.title}</h3>
+      <h4>{hit.author.title}</h4>
     </div>
   );
 };
 
 const Home: NextPage = () => {
+  // await importBooks();
+
   return (
     <InstantSearch
       indexName='books'
@@ -54,7 +55,9 @@ const Home: NextPage = () => {
       <Configure hitsPerPage={9} />
       <div className='flex'>
         <aside className='bg-gray-500'>
-          <RefinementList attribute='authors' />
+          <Index indexName='author'>
+            <RefinementList attribute='title' />
+          </Index>
         </aside>
 
         <main className='bg-gray-300'>
